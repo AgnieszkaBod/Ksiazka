@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Ksiazka</string>
+    <string name="user_name">User name:</string>
+    <string name="enter_username">Enter userName...</string>
+    <string name="password">Password:</string>
+    <string name="enter_password">Enter password...</string>
+    <string name="register">Register</string>
+    <string name="log_in">Log in</string>
+    <string name="dodaj_przepis">Dodaj przepis!</string>
+    <string name="wpisz_wykonanie">Wpisz wykonanie:</string>
+    <string name="podaj_skladniki">Podaj składniki:</string>
+    <string name="pokaz_przepisy">Wyświetl przepisy!</string>
+    <string name="title_activity_menu">Menu</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="wyswietl_przepisy">Wyswietl przepisy</string>
+    <string name="dodaj_nowy_przepis">Dodaj nowy przepis</string>
+    <string name="register_menu">Register</string>
+    <string name="podaj_nazwe">Podaj nazwę</string>
+</resources>

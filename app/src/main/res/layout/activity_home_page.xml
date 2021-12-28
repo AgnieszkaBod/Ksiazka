@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="@string/dodaj_przepis"
+                android:textAlignment="center"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/podaj_nazwe"
+                android:minHeight="40dp" />
+
+            <EditText
+                android:id="@+id/wykonanie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/wpisz_wykonanie"
+                android:importantForAutofill="no"
+                android:minHeight="40dp" />
+
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="@string/podaj_skladniki"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/skladnik0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/podaj_skladniki"
+                android:minHeight="30dp" />
+
+            <EditText
+                android:id="@+id/skladnik1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/podaj_skladniki"
+                android:minHeight="30dp" />
+
+            <EditText
+                android:id="@+id/skladnik2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/podaj_skladniki"
+                android:minHeight="30dp" />
+
+            <EditText
+                android:id="@+id/skladnik3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/podaj_skladniki"
+                android:minHeight="30dp" />
+
+            <EditText
+                android:id="@+id/skladnik4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/podaj_skladniki"
+                android:minHeight="30dp" />
+
+            <EditText
+                android:id="@+id/skladnik5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:hint="@string/podaj_skladniki"
+                android:minHeight="30dp" />
+
+            <EditText
+                android:id="@+id/skladnik6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:hint="@string/podaj_skladniki"
+                android:minHeight="30dp" />
+
+            <Button
+                android:id="@+id/dodaj_przepis"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="12dp"
+                android:text="@string/dodaj_przepis" />
+
+            <Button
+                android:id="@+id/show"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="12dp"
+                android:text="@string/pokaz_przepisy" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
