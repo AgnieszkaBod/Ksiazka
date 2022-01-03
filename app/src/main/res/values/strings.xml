@@ -23,4 +23,5 @@
     <string name="dodaj_nowy_przepis">Dodaj nowy przepis</string>
     <string name="register_menu">Register</string>
     <string name="podaj_nazwe">Podaj nazwę</string>
+    <string name="twoje_przepisy">Twoje przepisy</string>
 </resources>
