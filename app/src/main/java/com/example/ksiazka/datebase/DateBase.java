@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import com.example.ksiazka.daos.PrzepisDao;
 import com.example.ksiazka.daos.UserDao;
 
-@Database(entities = {UserEntity.class, PrzepisEntity.class}, version = 4)
+@Database(entities = {UserEntity.class, PrzepisEntity.class}, version = 1)
 public abstract class DateBase extends RoomDatabase {
     private static final String dbName = "app";
     private static DateBase dateBase;

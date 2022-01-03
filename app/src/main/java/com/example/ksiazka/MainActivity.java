@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(() -> Toast.makeText(getApplicationContext(),
                                 "Invalid Credentials", Toast.LENGTH_SHORT).show());
                     } else {
-                        startActivity(new Intent(MainActivity.this, Menu.class));
+                        startActivity(new Intent(MainActivity.this, MenuActivity.class));
                     }
 
                 }).start();

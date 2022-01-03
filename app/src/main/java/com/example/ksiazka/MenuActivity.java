@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class Menu extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     Button dodaj, show;
 
@@ -20,11 +20,11 @@ public class Menu extends AppCompatActivity {
         show = findViewById(R.id.pokaz_przepisy_menu);
 
         dodaj.setOnClickListener(v -> {
-            startActivity(new Intent(Menu.this, HomePage.class));
+            startActivity(new Intent(MenuActivity.this, HomePage.class));
         });
 
         show.setOnClickListener(v -> {
-            startActivity(new Intent(Menu.this, WszystkiePrzepisy.class));
+            startActivity(new Intent(MenuActivity.this, WszystkiePrzepisy.class));
         });
 
     }

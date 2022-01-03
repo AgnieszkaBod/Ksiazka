@@ -2,6 +2,7 @@ package com.example.ksiazka;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,20 +35,20 @@ public class HomePage extends AppCompatActivity {
         dodajPrzepis = findViewById(R.id.dodaj_przepis);
         show = findViewById(R.id.show);
 
-        PrzepisEntity przepisEntity = new PrzepisEntity();
-        przepisEntity.setName(name.getText().toString());
-        przepisEntity.setWykonanie(wykonanie.getText().toString());
-        przepisEntity.setSkladnik0(skladnik0.getText().toString());
-        przepisEntity.setSkladnik1(skladnik1.getText().toString());
-        przepisEntity.setSkladnik2(skladnik2.getText().toString());
-        przepisEntity.setSkladnik3(skladnik3.getText().toString());
-        przepisEntity.setSkladnik4(skladnik4.getText().toString());
-        przepisEntity.setSkladnik5(skladnik5.getText().toString());
-        przepisEntity.setSkladnik6(skladnik6.getText().toString());
+        dodajPrzepis.setOnClickListener(v -> {
+            PrzepisEntity przepisEntity = new PrzepisEntity();
+            przepisEntity.setName(name.getText().toString());
+            przepisEntity.setWykonanie(wykonanie.getText().toString());
+            przepisEntity.setSkladnik0(skladnik0.getText().toString());
+            przepisEntity.setSkladnik1(skladnik1.getText().toString());
+            przepisEntity.setSkladnik2(skladnik2.getText().toString());
+            przepisEntity.setSkladnik3(skladnik3.getText().toString());
+            przepisEntity.setSkladnik4(skladnik4.getText().toString());
+            przepisEntity.setSkladnik5(skladnik5.getText().toString());
+            przepisEntity.setSkladnik6(skladnik6.getText().toString());
 
-        if (validate(przepisEntity.getName())) {
-            dodajPrzepis.setOnClickListener(v -> {
-
+            Log.e("Nazwa", przepisEntity.getName());
+            if (validate(przepisEntity.getName())) {
                 DateBase dataBase = DateBase.getDateBase(getApplicationContext());
                 final PrzepisDao przepisDao = dataBase.przepisDao();
                 new Thread(() -> {
@@ -55,12 +56,13 @@ public class HomePage extends AppCompatActivity {
                     runOnUiThread(() -> Toast.makeText(getApplicationContext(),
                             "Dodano przepis!", Toast.LENGTH_SHORT)
                             .show());
+
                 }).start();
-            });
-        } else {
-            Toast.makeText(getApplicationContext(), "Nazawa przepisu jest pusta!", Toast.LENGTH_SHORT)
-                    .show();
-        }
+            } else {
+                Toast.makeText(getApplicationContext(), "Nazawa przepisu jest pusta!", Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
         show.setOnClickListener(
                 v -> startActivity(new Intent(HomePage.this, WszystkiePrzepisy.class)));
     }

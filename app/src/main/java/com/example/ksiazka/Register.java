@@ -35,7 +35,7 @@ public class Register extends AppCompatActivity {
             if (validateInput(userEntity)) {
                 new Thread(() -> {
                     String check = userDao.check(userName.getText().toString());
-                    if (!check.equals(userName.getText().toString())) {
+                    if (check == null || !check.equals(userName.getText().toString())) {
                         userDao.registerUser(userEntity);
                         runOnUiThread(() -> {
                             Toast.makeText(getApplicationContext(), "User registered!",

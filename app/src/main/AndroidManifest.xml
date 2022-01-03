@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ksiazka">
         <activity
-            android:name=".Menu"
+            android:name=".PrzepisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".WszystkiePrzepisy"

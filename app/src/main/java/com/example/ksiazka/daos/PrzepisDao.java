@@ -17,6 +17,9 @@ public interface PrzepisDao {
     @Query("DELETE FROM przepis WHERE name=(:name) ")
     void delete(String name);
 
+    @Query("SELECT * FROM przepis WHERE name=(:name)")
+    PrzepisEntity getByName(String name);
+
     @Query("SELECT name FROM przepis")
     List<String> showAll();
 

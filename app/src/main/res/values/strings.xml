@@ -24,4 +24,7 @@
     <string name="register_menu">Register</string>
     <string name="podaj_nazwe">Podaj nazwę</string>
     <string name="twoje_przepisy">Twoje przepisy</string>
+
+    <string name="edycja">Edycja</string>
+    <string name="usun">Usuń</string>
 </resources>
