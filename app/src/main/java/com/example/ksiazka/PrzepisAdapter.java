@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,7 @@ public class PrzepisAdapter extends RecyclerView.Adapter<PrzepisAdapter.ViewHold
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
+        RatingBar ratingBar;
 
         ViewHolder(View itemView) {
             super(itemView);

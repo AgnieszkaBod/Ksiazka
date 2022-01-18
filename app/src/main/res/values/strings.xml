@@ -6,7 +6,7 @@
     <string name="enter_password">Enter password...</string>
     <string name="register">Register</string>
     <string name="log_in">Log in</string>
-    <string name="dodaj_przepis">Dodaj przepis!</string>
+    <string name="zapisz_przepis">Zapisz przepis!</string>
     <string name="wpisz_wykonanie">Wpisz wykonanie:</string>
     <string name="podaj_skladniki">Podaj składniki:</string>
     <string name="pokaz_przepisy">Wyświetl przepisy!</string>
@@ -27,4 +27,5 @@
 
     <string name="edycja">Edycja</string>
     <string name="usun">Usuń</string>
+    <string name="register_user">register_user</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.ksiazka.daos.PrzepisDao;
@@ -21,12 +22,12 @@ public class PrzepisActivity extends AppCompatActivity {
         ImageView zdjecie = findViewById(R.id.przepis_zdjecie);
         TextView skladniki = findViewById(R.id.przepis_skladniki);
         TextView wykonanie = findViewById(R.id.przepis_wykonanie);
-
+        RatingBar poziom = findViewById(R.id.ratingBar2);
         Button edycja = findViewById(R.id.przepis_edycja);
         Button usun = findViewById(R.id.przepis_usun);
         Bundle extras = getIntent().getExtras();
 
-        if (extras!=null){
+        if (extras != null) {
             String nazwa = extras.getString("nazwa");
             tytul.setText(nazwa);
 
@@ -35,22 +36,19 @@ public class PrzepisActivity extends AppCompatActivity {
                 final PrzepisDao przepisDao = dataBase.przepisDao();
                 PrzepisEntity przepis = przepisDao.getByName(nazwa);
 
-
-                String sklad = przepis.getSkladnik0()+przepis.getSkladnik1()+przepis.getSkladnik2()+przepis.getSkladnik3()+przepis.getSkladnik4()+przepis.getSkladnik5()+przepis.getSkladnik6();
+                String sklad = przepis.getSkladnik0() + przepis.getSkladnik1() + przepis.getSkladnik2() + przepis.getSkladnik3() + przepis.getSkladnik4() + przepis.getSkladnik5() + przepis.getSkladnik6();
                 skladniki.setText(sklad);
                 wykonanie.setText(przepis.getWykonanie());
+                poziom.setRating(przepis.getPoziom());
             }).start();
 
-            usun.setOnClickListener(v -> {
-                new Thread(() -> {
-                    DateBase dataBase = DateBase.getDateBase(getApplicationContext());
-                    final PrzepisDao przepisDao = dataBase.przepisDao();
-                    przepisDao.delete(nazwa);
-                    this.finish();
-                }).start();
-            });
+            usun.setOnClickListener(v -> new Thread(() -> {
+                DateBase dataBase = DateBase.getDateBase(getApplicationContext());
+                final PrzepisDao przepisDao = dataBase.przepisDao();
+                przepisDao.delete(nazwa);
+                this.finish();
+            }).start());
         }
     }
-
 
 }

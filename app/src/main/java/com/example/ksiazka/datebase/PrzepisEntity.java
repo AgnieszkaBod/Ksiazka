@@ -37,6 +37,17 @@ public class PrzepisEntity {
     @ColumnInfo(name = "skladnik6")
     String skladnik6;
 
+    @ColumnInfo(name = "poziom")
+    float poziom;
+
+    public float getPoziom() {
+        return poziom;
+    }
+
+    public void setPoziom(float poziom) {
+        this.poziom = poziom;
+    }
+
     public Long getId() {
         return id;
     }
@@ -116,4 +127,5 @@ public class PrzepisEntity {
     public void setSkladnik6(String skladnik6) {
         this.skladnik6 = skladnik6;
     }
+
 }

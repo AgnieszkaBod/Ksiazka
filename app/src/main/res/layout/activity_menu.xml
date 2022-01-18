@@ -22,7 +22,7 @@
             android:id="@+id/pokaz_przepisy_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="22sp"
+            android:layout_margin="20sp"
             android:text="@string/wyswietl_przepisy" />
     </LinearLayout>
 

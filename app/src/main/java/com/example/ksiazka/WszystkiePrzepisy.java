@@ -36,7 +36,6 @@ public class WszystkiePrzepisy extends AppCompatActivity implements SearchView.O
             DateBase dataBase = DateBase.getDateBase(getApplicationContext());
             final PrzepisDao przepisDao = dataBase.przepisDao();
             List<String> przepisName = przepisDao.showAll();
-
             przepisAdapter = new PrzepisAdapter(this, przepisName);
             przepisAdapter.setClickListener(this);
             recyclerView.setAdapter(przepisAdapter);

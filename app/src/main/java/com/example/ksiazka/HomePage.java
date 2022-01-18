@@ -2,9 +2,9 @@ package com.example.ksiazka;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,7 @@ public class HomePage extends AppCompatActivity {
 
     EditText wykonanie, skladnik0, skladnik1, skladnik2, skladnik3, skladnik4, skladnik5, skladnik6;
     EditText name;
+    RatingBar poziom;
     Button dodajPrzepis, show;
 
     @Override
@@ -33,6 +34,7 @@ public class HomePage extends AppCompatActivity {
         skladnik5 = findViewById(R.id.skladnik5);
         skladnik6 = findViewById(R.id.skladnik6);
         dodajPrzepis = findViewById(R.id.dodaj_przepis);
+        poziom = findViewById(R.id.rating);
         show = findViewById(R.id.show);
 
         dodajPrzepis.setOnClickListener(v -> {
@@ -46,8 +48,8 @@ public class HomePage extends AppCompatActivity {
             przepisEntity.setSkladnik4(skladnik4.getText().toString());
             przepisEntity.setSkladnik5(skladnik5.getText().toString());
             przepisEntity.setSkladnik6(skladnik6.getText().toString());
+            przepisEntity.setPoziom(poziom.getRating());
 
-            Log.e("Nazwa", przepisEntity.getName());
             if (validate(przepisEntity.getName())) {
                 DateBase dataBase = DateBase.getDateBase(getApplicationContext());
                 final PrzepisDao przepisDao = dataBase.przepisDao();
