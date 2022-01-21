@@ -1,12 +1,14 @@
 package com.example.ksiazka;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ListAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ksiazka.datebase.PrzepisEntity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
@@ -73,17 +76,22 @@ public class PrzepisAdapter extends RecyclerView.Adapter<PrzepisAdapter.ViewHold
                         for (final String e : mData) {
                             if (e.contains(constraint)) {
                                 results.add(e);
+                                Log.e("msg",e);
                             }
                         }
                     }
                     filtred.values = results;
                 }
+
                 return filtred;
             }
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-
+                    if(constraint.length() > 0 && results.count >0){
+                        mData.clear();
+                        mData.addAll((Collection<? extends String>) results.values);
+                    }
             }
         };
     }
