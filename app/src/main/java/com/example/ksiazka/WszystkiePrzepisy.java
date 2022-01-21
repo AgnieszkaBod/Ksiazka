@@ -18,6 +18,7 @@ import java.util.List;
 
 
 public class WszystkiePrzepisy extends AppCompatActivity implements SearchView.OnQueryTextListener, PrzepisAdapter.ItemClickListener {
+
     protected RecyclerView recyclerView;
     protected PrzepisAdapter przepisAdapter;
     protected SearchView searchEvent;
@@ -40,7 +41,7 @@ public class WszystkiePrzepisy extends AppCompatActivity implements SearchView.O
             public boolean onQueryTextChange(String newText) {
 
                 przepisAdapter.getFilter().filter(newText);
-                return false;
+                return true;
             }
         });
 
