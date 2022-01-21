@@ -1,15 +1,14 @@
 package com.example.ksiazka;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ksiazka.daos.PrzepisDao;
 import com.example.ksiazka.datebase.DateBase;
@@ -31,7 +30,20 @@ public class WszystkiePrzepisy extends AppCompatActivity implements SearchView.O
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         searchEvent = findViewById(R.id.search);
-        searchEvent.setOnQueryTextListener(this);
+        searchEvent.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                przepisAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         new Thread(() -> {
             DateBase dataBase = DateBase.getDateBase(getApplicationContext());
             final PrzepisDao przepisDao = dataBase.przepisDao();
@@ -47,14 +59,11 @@ public class WszystkiePrzepisy extends AppCompatActivity implements SearchView.O
         super.onResume();
         List<String> przepisName = new ArrayList<>();
         Thread t = new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        DateBase dataBase = DateBase.getDateBase(getApplicationContext());
-                        final PrzepisDao przepisDao = dataBase.przepisDao();
-                        List<String> przepisy = przepisDao.showAll();
-                        przepisName.addAll(przepisy);
-                    }
+                () -> {
+                    DateBase dataBase = DateBase.getDateBase(getApplicationContext());
+                    final PrzepisDao przepisDao = dataBase.przepisDao();
+                    List<String> przepisy = przepisDao.showAll();
+                    przepisName.addAll(przepisy);
                 }
         );
         t.start();

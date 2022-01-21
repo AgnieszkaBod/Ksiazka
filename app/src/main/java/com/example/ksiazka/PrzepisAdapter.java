@@ -4,18 +4,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ksiazka.datebase.PrzepisEntity;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class PrzepisAdapter extends RecyclerView.Adapter<PrzepisAdapter.ViewHolder> {
+public class PrzepisAdapter extends RecyclerView.Adapter<PrzepisAdapter.ViewHolder> implements Filterable {
 
-    private List<String> mData;
-    private LayoutInflater mInflater;
+    private final List<String> mData;
+    private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
@@ -45,11 +52,46 @@ public class PrzepisAdapter extends RecyclerView.Adapter<PrzepisAdapter.ViewHold
         return mData.size();
     }
 
+    /**
+     * <p>Returns a filter that can be used to constrain data with a filtering
+     * pattern.</p>
+     *
+     * <p>This method is usually implemented by {@link Adapter}
+     * classes.</p>
+     *
+     * @return a filter used to constrain data
+     */
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults filtred = new FilterResults();
+                List<String> results = new ArrayList<>();
+                if (constraint.toString().toLowerCase(Locale.ROOT).length() > 0) {
+                    if (mData != null && mData.size() > 0) {
+                        for (final String e : mData) {
+                            if (e.contains(constraint)) {
+                                results.add(e);
+                            }
+                        }
+                    }
+                    filtred.values = results;
+                }
+                return filtred;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            }
+        };
+    }
+
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
-        RatingBar ratingBar;
 
         ViewHolder(View itemView) {
             super(itemView);
