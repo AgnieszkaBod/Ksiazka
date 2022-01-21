@@ -1,5 +1,6 @@
 package com.example.ksiazka;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,10 +39,11 @@ public class WszystkiePrzepisy extends AppCompatActivity implements SearchView.O
                 return false;
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 przepisAdapter.getFilter().filter(newText);
+                przepisAdapter.notifyDataSetChanged();
                 return true;
             }
         });

@@ -125,12 +125,6 @@
                 android:layout_margin="12dp"
                 android:text="@string/zapisz_przepis" />
 
-            <Button
-                android:id="@+id/show"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_margin="12dp"
-                android:text="@string/pokaz_przepisy" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

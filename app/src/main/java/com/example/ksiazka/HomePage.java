@@ -1,6 +1,5 @@
 package com.example.ksiazka;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +17,8 @@ public class HomePage extends AppCompatActivity {
     EditText wykonanie, skladnik0, skladnik1, skladnik2, skladnik3, skladnik4, skladnik5, skladnik6;
     EditText name;
     RatingBar poziom;
-    Button dodajPrzepis, show;
+    Button dodajPrzepis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class HomePage extends AppCompatActivity {
         skladnik6 = findViewById(R.id.skladnik6);
         dodajPrzepis = findViewById(R.id.zapisz_przepis);
         poziom = findViewById(R.id.rating);
-        show = findViewById(R.id.show);
 
         dodajPrzepis.setOnClickListener(v -> {
             PrzepisEntity przepisEntity = new PrzepisEntity();
@@ -55,12 +54,12 @@ public class HomePage extends AppCompatActivity {
                 final PrzepisDao przepisDao = dataBase.przepisDao();
                 new Thread(() -> {
                     String check = przepisDao.check(przepisEntity.getName());
-                    if (!check.equals(przepisEntity.getName())) {
+                    if (check == null) {
                         przepisDao.savePrzepis(przepisEntity);
                         runOnUiThread(() -> Toast.makeText(getApplicationContext(),
                                 "Dodano przepis!", Toast.LENGTH_SHORT)
                                 .show());
-
+                        this.finish();
                     } else {
                         runOnUiThread(() -> Toast.makeText(getApplicationContext(),
                                 "Nazwa przepisu musi być unikalna ta nazwa już istnieje!", Toast.LENGTH_SHORT)
@@ -68,12 +67,10 @@ public class HomePage extends AppCompatActivity {
                     }
                 }).start();
             } else {
-                Toast.makeText(getApplicationContext(), "Nazawa przepisu jest pusta!", Toast.LENGTH_SHORT)
+                Toast.makeText(getApplicationContext(), "Nazwa przepisu jest pusta!", Toast.LENGTH_SHORT)
                         .show();
             }
         });
-        show.setOnClickListener(
-                v -> startActivity(new Intent(HomePage.this, WszystkiePrzepisy.class)));
     }
 
     private Boolean validate(String name) {
