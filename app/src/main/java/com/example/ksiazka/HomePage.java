@@ -33,7 +33,7 @@ public class HomePage extends AppCompatActivity {
         skladnik4 = findViewById(R.id.skladnik4);
         skladnik5 = findViewById(R.id.skladnik5);
         skladnik6 = findViewById(R.id.skladnik6);
-        dodajPrzepis = findViewById(R.id.dodaj_przepis);
+        dodajPrzepis = findViewById(R.id.zapisz_przepis);
         poziom = findViewById(R.id.rating);
         show = findViewById(R.id.show);
 
@@ -54,11 +54,18 @@ public class HomePage extends AppCompatActivity {
                 DateBase dataBase = DateBase.getDateBase(getApplicationContext());
                 final PrzepisDao przepisDao = dataBase.przepisDao();
                 new Thread(() -> {
-                    przepisDao.savePrzepis(przepisEntity);
-                    runOnUiThread(() -> Toast.makeText(getApplicationContext(),
-                            "Dodano przepis!", Toast.LENGTH_SHORT)
-                            .show());
+                    String check = przepisDao.check(przepisEntity.getName());
+                    if (!check.equals(przepisEntity.getName())) {
+                        przepisDao.savePrzepis(przepisEntity);
+                        runOnUiThread(() -> Toast.makeText(getApplicationContext(),
+                                "Dodano przepis!", Toast.LENGTH_SHORT)
+                                .show());
 
+                    } else {
+                        runOnUiThread(() -> Toast.makeText(getApplicationContext(),
+                                "Nazwa przepisu musi być unikalna ta nazwa już istnieje!", Toast.LENGTH_SHORT)
+                                .show());
+                    }
                 }).start();
             } else {
                 Toast.makeText(getApplicationContext(), "Nazawa przepisu jest pusta!", Toast.LENGTH_SHORT)

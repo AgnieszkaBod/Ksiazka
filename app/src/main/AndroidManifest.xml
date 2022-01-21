@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ksiazka">
         <activity
+            android:name=".EdytujActivity"
+            android:exported="false" />
+        <activity
             android:name=".PrzepisActivity"
             android:exported="false" />
         <activity

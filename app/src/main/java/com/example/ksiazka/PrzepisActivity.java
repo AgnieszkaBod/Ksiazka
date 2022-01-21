@@ -2,6 +2,7 @@ package com.example.ksiazka;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -49,6 +50,10 @@ public class PrzepisActivity extends AppCompatActivity {
                 this.finish();
             }).start());
         }
+        edycja.setOnClickListener(v -> {
+            startActivity(new Intent(PrzepisActivity.this, EdytujActivity.class));
+        });
+
     }
 
 }
