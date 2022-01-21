@@ -8,30 +8,28 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ListAdapter;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ksiazka.datebase.PrzepisEntity;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
 public class PrzepisAdapter extends RecyclerView.Adapter<PrzepisAdapter.ViewHolder> implements Filterable {
 
-    private final List<String> mData;
+    private List<String> mData;
+    private List<String> mDataWhole;
     private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
     PrzepisAdapter(Context context, List<String> data) {
+        Log.i("Constructor", data.toString());
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        mDataWhole = new ArrayList<>(data);
     }
 
     // inflates the row layout from xml when needed
@@ -71,27 +69,36 @@ public class PrzepisAdapter extends RecyclerView.Adapter<PrzepisAdapter.ViewHold
             protected FilterResults performFiltering(CharSequence constraint) {
                 final FilterResults filtred = new FilterResults();
                 List<String> results = new ArrayList<>();
-                if (constraint.toString().toLowerCase(Locale.ROOT).length() > 0) {
+                constraint = constraint.toString().toLowerCase(Locale.ROOT);
+                if (constraint.length() > 0) {
                     if (mData != null && mData.size() > 0) {
                         for (final String e : mData) {
-                            if (e.contains(constraint)) {
+                            if (e.toLowerCase(Locale.ROOT).contains(constraint)) {
                                 results.add(e);
-                                Log.e("msg",e);
                             }
+                            Log.e("wole0", mDataWhole.toString());
                         }
                     }
                     filtred.values = results;
+                    filtred.count = results.size();
                 }
-
+                else {
+                    filtred.values = new ArrayList<String>(mDataWhole);
+                    filtred.count = mDataWhole.size();
+                }
                 return filtred;
             }
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                    if(constraint.length() > 0 && results.count >0){
-                        mData.clear();
-                        mData.addAll((Collection<? extends String>) results.values);
-                    }
+                if (constraint.length() > 0 && results.count > 0){
+                    mData.clear();
+                    mData.addAll((ArrayList<String>) results.values);
+                }
+                else{
+                    mData = new ArrayList<>(mDataWhole);
+                }
+                notifyDataSetChanged();
             }
         };
     }

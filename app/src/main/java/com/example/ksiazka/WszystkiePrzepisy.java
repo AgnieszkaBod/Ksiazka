@@ -2,6 +2,7 @@ package com.example.ksiazka;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
 
@@ -85,7 +86,10 @@ public class WszystkiePrzepisy extends AppCompatActivity implements SearchView.O
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        Log.e("msg", newText);
+        przepisAdapter.getFilter().filter(newText);
+        przepisAdapter.notifyDataSetChanged();
+        return true;
     }
 
     @Override
